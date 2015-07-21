@@ -37,8 +37,8 @@ module.exports = function(app, options) {
         files.forEach(function(file) {
 
             var fileContents;
-            var match = file.match(/[a-z]{2}(-|_)[A-Z]{2}/); // Extract locale from path
-            var localeKey = match ? getLocaleKey(match[0]) : null;
+            var match = file.match(/\/([a-z]{2})\//); // Extract locale from path
+            var localeKey = match ? getLocaleKey(match[1]) : null;
 
             if(localeKey) {
 
@@ -52,7 +52,7 @@ module.exports = function(app, options) {
             }
 
         });
-
+        
         supportedLocales = new locale.Locales(locales);
         localeDetector = locale(supportedLocales);
 
